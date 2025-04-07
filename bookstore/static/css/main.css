@@ -141,7 +141,7 @@ body {
 
 /*  SLIDER */
 
-#slider1, #slider2 {
+#slider1, #slider2, #our-story {
     position: relative;
     z-index: 1;
     width: 100%;
@@ -149,7 +149,7 @@ body {
     align-items: center;
 }
 
-#slider1::before, #slider2::before {
+#slider1::before, #slider2::before, #our-story::before {
     content: '';
     position: absolute;
     top: 290;
@@ -160,6 +160,7 @@ body {
     z-index: 0;
     opacity: 0.3;
 }
+
 
 .swiper {
     position: relative;
@@ -268,4 +269,30 @@ body {
     width: 35px;
     height: 1px;
     background-color: #ffffff;
+    z-index: 2;
+}
+
+.our-story-title {
+    margin: 15px 0px;
+    text-align: center;
+    color: #ffffff;
+    font-size: 60px;
+    z-index: 1;
+}
+
+.btn-def {
+    z-index: 1;
+    border: 4px solid #ffffff;
+    padding: 10px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: normal;
+    margin-top: 10px;
+}
+
+.btn-def:hover {
+    background-color: #ffffff;
+    color: rgb(14, 52, 90);
+
 }
