@@ -18,44 +18,8 @@
 </head>
 <body>
 <div class="site-container">
-    <div class="width-container">
-        <div class="body-header">
-            <div class="main-logo">
-                <div class="main-logo-left">
-                    BINK.
-                </div>
-                <div class="main-logo-right">
-                    P U B L I S H E R S
-                </div>
-            </div>
-            <div class="menu-header">
-                <div class="btn-header">Bookstore</div>
-                <div class="btn-header">Events</div>
-                <div class="btn-header">About</div>
-                <div class="btn-header">Contact</div>
-
-                <div class="login-button">
-                    <svg viewBox="0 0 50 50" width="30" height="30" fill="currentColor">
-                        <path d="M25 48.077c-5.924 0-11.31-2.252-15.396-5.921 2.254-5.362 7.492-8.267 15.373-8.267 7.889 0 13.139 3.044 15.408 8.418-4.084 3.659-9.471 5.77-15.385 5.77m.278-35.3c4.927 0 8.611 3.812 8.611 8.878 0 5.21-3.875 9.456-8.611 9.456s-8.611-4.246-8.611-9.456c0-5.066 3.684-8.878 8.611-8.878M25 0C11.193 0 0 11.193 0 25c0 .915.056 1.816.152 2.705.032.295.091.581.133.873.085.589.173 1.176.298 1.751.073.338.169.665.256.997.135.515.273 1.027.439 1.529.114.342.243.675.37 1.01.18.476.369.945.577 1.406.149.331.308.657.472.98.225.446.463.883.714 1.313.182.312.365.619.56.922.272.423.56.832.856 1.237.207.284.41.568.629.841.325.408.671.796 1.02 1.182.22.244.432.494.662.728.405.415.833.801 1.265 1.186.173.154.329.325.507.475l.004-.011A24.886 24.886 0 0 0 25 50a24.881 24.881 0 0 0 16.069-5.861.126.126 0 0 1 .003.01c.172-.144.324-.309.49-.458.442-.392.88-.787 1.293-1.209.228-.232.437-.479.655-.72.352-.389.701-.78 1.028-1.191.218-.272.421-.556.627-.838.297-.405.587-.816.859-1.24a26.104 26.104 0 0 0 1.748-3.216c.208-.461.398-.93.579-1.406.127-.336.256-.669.369-1.012.167-.502.305-1.014.44-1.53.087-.332.183-.659.256-.996.126-.576.214-1.164.299-1.754.042-.292.101-.577.133-.872.095-.89.152-1.791.152-2.707C50 11.193 38.807 0 25 0"></path>
-                    </svg>
-                    <div class="login-label">Войти</div>
-                </div>
-
-                <div class="cart-icon">
-                    <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none"
-                         xmlns="http://www.w3.org/2000/svg">
-                        <path d="M7.5 18C8.32843 18 9 18.6716 9 19.5C9 20.3284 8.32843 21 7.5 21C6.67157 21 6 20.3284 6 19.5C6 18.6716 6.67157 18 7.5 18Z"
-                              stroke="#1C274C" stroke-width="1.5"/>
-                        <path d="M16.5 18.0001C17.3284 18.0001 18 18.6716 18 19.5001C18 20.3285 17.3284 21.0001 16.5 21.0001C15.6716 21.0001 15 20.3285 15 19.5001C15 18.6716 15.6716 18.0001 16.5 18.0001Z"
-                              stroke="#1C274C" stroke-width="1.5"/>
-                        <path d="M2 3L2.26121 3.09184C3.5628 3.54945 4.2136 3.77826 4.58584 4.32298C4.95808 4.86771 4.95808 5.59126 4.95808 7.03836V9.76C4.95808 12.7016 5.02132 13.6723 5.88772 14.5862C6.75412 15.5 8.14857 15.5 10.9375 15.5H12M16.2404 15.5C17.8014 15.5 18.5819 15.5 19.1336 15.0504C19.6853 14.6008 19.8429 13.8364 20.158 12.3075L20.6578 9.88275C21.0049 8.14369 21.1784 7.27417 20.7345 6.69708C20.2906 6.12 18.7738 6.12 17.0888 6.12H11.0235M4.95808 6.12H7"
-                              stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"/>
-                    </svg>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="width-container">
+    {% include 'header.html' %}
+     <div class="width-container">
         <img src="{% static 'images/main_banner.avif' %}" class="main-banner">
         <div class="banner-title">A SOFA, <br>A GOOD<br>BOOK,<br>AND YOU.</div>
     </div>
@@ -131,7 +95,7 @@
         </div>
     </div>
     <div class="width-container" id="slider2">
-        <div class="line" style="margin-top: 100px;margin-bottom: 20px;"></div>
+        <div class="line" style="margin-top: 200px;margin-bottom: 20px;"></div>
         <div class="month">This Month's</div>
         <div class="rec">RECOMMENDED BOOKS</div>
         <div class="line" style="margin-top: 20px;margin-bottom: 40px;"></div>
@@ -196,7 +160,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
 
@@ -210,8 +173,84 @@
         <div class="btn-def">Read Our Story</div>
         <div class="line" style="margin-top: 20px;"></div>
     </div>
+    <div class="width-container" id="meetup">
+        <div class="second-box">
+            <div class="meetup-subtitle">Coming Up</div>
+            <div class="meetup-title">BOOK LAUNCH</div>
+            <div class="double-block">
+                <div class="column-info">
+                    <div class="box-info">
+                        <div class="meetup-name">Introducing The Land of AILOO</div>
+                        <div class="meetup-author">By Mark Walker</div>
+
+                        <div class="info-date-title">Когда</div>
+                        <div class="line meetup-line"></div>
+                        <div class="info-date-content">12 июл. 2035 г., 19:00</div>
+
+                        <div class="info-date-title">Где</div>
+                        <div class="line meetup-line"></div>
+                        <div class="info-date-content">500 Terry Francois Street, San Francisco, CA, USA</div>
+
+                    </div>
+                </div>
+                <div class="column-cover">
+                    <img src="{% static 'images/meetup.webp' %}">
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
+<footer>
+    <div class="footer-container">
+        <div class="footer-column">
+            <h3>BINK. Publishers</h3>
+            <p>300 Terry Francine St.<br>
+                San Francisco, CA 94158<br>
+                123-456-7890<br>
+                info@my-fancine.com</p>
+        </div>
+
+        <div class="footer-column">
+            <h3>Shop</h3>
+            <a href="#">FAO</a>
+
+        </div>
+
+        <div class="footer-column">
+            <h3>Customer Service</h3>
+            <a href="#">Shipping & Returns</a>
+            <a href="#">Store Policy</a>
+            <a href="#">Payment Methods</a>
+        </div>
+
+        <div class="footer-column">
+            <h3>Social</h3>
+            <div class="social-links">
+                <a href="#">Twitter</a>
+                <a href="#">Instagram</a>
+                <a href="#">Pinterest</a>
+            </div>
+        </div>
+
+        <div class="footer-column">
+            <h3>Be the First to Know</h3>
+            <p>Sign up for our newsletter</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email here *" required>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="newsletter">
+                    <label for="newsletter">Yes, subscribe me to your newsletter.*</label>
+                </div>
+                <button type="submit" class="btn-def" id="btn-subscribe">Subscribe</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2005 by BINK. Publishers. Powered and secured by XGS.</p>
+    </div>
+</footer>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="{% static 'js/swiper.js' %}"></script>
 </body>

@@ -149,12 +149,24 @@ body {
     align-items: center;
 }
 
-#slider1::before, #slider2::before, #our-story::before {
+#slider1::before, #slider2::before {
     content: '';
     position: absolute;
     top: 290;
     left: 0;
     height: 100%;
+    width: 100%;
+    background: rgb(14, 52, 90);
+    z-index: 0;
+    opacity: 0.3;
+}
+
+#our-story::before {
+    content: '';
+    position: absolute;
+    top: 290;
+    left: 0;
+    height: 240px;
     width: 100%;
     background: rgb(14, 52, 90);
     z-index: 0;
@@ -295,4 +307,214 @@ body {
     background-color: #ffffff;
     color: rgb(14, 52, 90);
 
+}
+
+.second-box {
+    display: flex;
+    flex-direction: column;
+}
+
+#meetup {
+    justify-content: center;
+    align-items: center;
+}
+
+.meetup-title {
+    font-size: 38px;
+    color: rgb(14, 52, 90);
+    text-align: center;
+}
+
+.meetup-subtitle {
+    margin-top: 80px;
+    font-size: 24px;
+    font-weight: normal;
+    color: rgb(14, 52, 90);
+    text-align: center;
+}
+
+.double-block {
+    margin-top: 20px;
+    display: flex;
+    gap: 50px;
+}
+
+.column-info {
+    display: flex;
+    flex: 1;
+    align-items: center;
+}
+
+.box-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.column-cover {
+    flex: 1;
+    padding: 10px;
+    background-color: rgb(14, 52, 90);
+}
+
+.meetup-name {
+    margin-right: 30px;
+    font-size: 22px;
+    color: rgb(14, 52, 90);
+}
+
+.meetup-author {
+    font-size: 20px;
+    font-weight: normal;
+    margin-top: 40px;
+    color: rgb(14, 52, 90);
+}
+
+.info-date-title {
+    margin-top: 40px;
+    font-size: 20px;
+    font-weight: normal;
+    color: rgb(14, 52, 90);
+}
+
+.info-date-content {
+    color: rgb(14, 52, 90);
+    margin-top: 4px;
+}
+
+.meetup-line {
+    background-color: rgb(14, 52, 90) !important;
+    width: 28px;
+    margin-top: 12px;
+}
+
+
+footer {
+    background-color: #f8f8f8;
+    padding: 40px 20px;
+    color: #333;
+    background-color: rgb(14, 52, 90);
+    margin-top: 100px;
+}
+
+.footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 200px;
+    margin-bottom: 30px;
+    padding: 0 15px;
+}
+
+.footer-column a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.footer-column h3 {
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #ffffff;
+
+}
+
+.footer-column p {
+    margin-bottom: 10px;
+    line-height: 1.5;
+    color: #ffffff;
+
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+    color: #333;
+    text-decoration: none;
+}
+
+.footer-column ul li a:hover {
+    text-decoration: underline;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+}
+
+.social-links a {
+    color: #ffffff;
+    font-size: 18px;
+}
+
+.newsletter-form {
+    margin-top: 20px;
+    color: #ffffff;
+
+}
+
+.newsletter-form input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.checkbox-container input {
+    margin-right: 10px;
+}
+
+.subscribe-btn {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.subscribe-btn:hover {
+    opacity: 0.9;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+    font-size: 12px;
+    color: #ffffff;
+}
+
+@media (max-width: 768px) {
+    .footer-column {
+        flex: 100%;
+    }
+}
+
+#btn-subscribe {
+    background-color: transparent;
+}
+
+#btn-subscribe:hover {
+    background-color: #ffffff;
 }
