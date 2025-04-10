@@ -1,6 +1,12 @@
 * {
     font-family: Georgia, "Times New Roman", serif;
     font-weight: bold;
+    color: rgb(14, 52, 90);
+
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -49,6 +55,7 @@ body {
     letter-spacing: 1px;
     padding: 0px 10px;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .main-logo-right:hover {
@@ -68,6 +75,9 @@ body {
     padding: 14px 10px;
     font-weight: normal;
     color: rgb(14, 52, 90);
+    background-color: #ffffff;
+    border: none;
+    text-decoration: none;
 }
 
 .btn-header:hover {
@@ -196,7 +206,7 @@ body {
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    transition: all 0.3s ease; /* Плавные изменения */
+    transition: all 0.3s ease;
 }
 
 .card-book:hover {
@@ -301,6 +311,7 @@ body {
     transition: all 0.3s ease;
     font-weight: normal;
     margin-top: 10px;
+    text-decoration: none;
 }
 
 .btn-def:hover {
@@ -518,3 +529,5 @@ footer {
 #btn-subscribe:hover {
     background-color: #ffffff;
 }
+
+

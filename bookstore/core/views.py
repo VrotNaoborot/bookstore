@@ -10,3 +10,11 @@ def index(requests):
 
 def market(request):
     return render(request, template_name="market.html")
+
+
+def about(request):
+    return render(request, template_name="about.html")
+
+
+def contact(request):
+    return render(request, template_name="contact.html")

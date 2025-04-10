@@ -1,0 +1,88 @@
+{% load static %}
+<head xmlns="">
+    <link rel="stylesheet" href="{% static '/css/main.css' %}">
+    <link rel="stylesheet" href="{% static '/css/market.css' %}">
+    <link rel="stylesheet" href="{% static '/css/contact.css' %}">
+
+    <script src="https://unpkg.com/imask"></script>
+    <script src="{% static 'js/main.js' %}" defer></script>
+    <script src="{% static 'js/modal.js' %}" defer></script>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=TT+Travels&display=swap">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,600;1,14..32,600&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="site-container">
+    {% include 'header.html' %}
+    <div class="width-container" id="CONTACT_CONTENT">
+        <div class="contact-subtitle">For More Info</div>
+        <div class="contact-title">CONTACT US</div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact">
+                    <div class="store">Store 01</div>
+                    <div class="info-col">
+                        <div class="info">
+                            Address
+                            <br>
+                            Yoshkar-Ola,
+                        </div>
+                        <div class="info">
+                            Tel
+                            <br>
+                            123-456-7890
+                        </div>
+                        <div class="info">
+                            Email
+                            <br>
+                            info@my-domain.com
+                        </div>
+                    </div>
+                </div>
+                <div class="contact">
+                    <div class="store">Store 02</div>
+                    <div class="info-col">
+                        <div class="info">
+                            Address
+                            <br>
+                            500 Terry Francine St. SF, CA 94158
+                        </div>
+                        <div class="info">
+                            Tel
+                            <br>
+                            123-456-7890
+                        </div>
+                        <div class="info">
+                            Email
+                            <br>
+                            info@my-domain.com
+                        </div>
+                    </div>
+                </div>
+                <div class="contact">
+                    <div class="store">Service</div>
+                    <div class="info-col">
+                        <div class="info">
+                            Tel
+                            <br>
+                            +7(902)-432-90-10
+                        </div>
+                        <div class="info">
+                            Email
+                            <br>
+                            info@bink.com
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>

@@ -19,6 +19,101 @@
 <body>
 <div class="site-container">
     {% include 'header.html' %}
+    <div class="market-subtitle">Our</div>
+    <div class="market-title">BOOKSTORE</div>
+    <div class="shop-container">
+        <div class="shop-filter">
+            <h2>Фильтр</h2>
+            <div class="filter-block">
+                <div class="filter-header" onclick="toggleFilter(this)">
+                    <span>Collection</span>
+                    <span class="toggle-icon">−</span>
+                </div>
+                <div class="filter-content">
+                    <label class="filter-item"><input type="checkbox"/> Novels</label>
+                    <label class="filter-item"><input type="checkbox"/> Design et Art</label>
+                    <label class="filter-item"><input type="checkbox"/> Life Style</label>
+                    <label class="filter-item"><input type="checkbox"/> Our books of the month</label>
+                    <label class="filter-item"><input type="checkbox"/> Bestsellers</label>
+                    <label class="filter-item"><input type="checkbox"/> Travel guides</label>
+                </div>
+            </div>
 
+            <div class="filter-block">
+                <div class="filter-header" onclick="toggleFilter(this)">
+                    <span>Цена</span>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="filter-content hidden">
+                    <div class="price-range">
+                        <span><span id="min-price">500</span>₽ — <span id="max-price">2000</span>₽</span>
+                        <div class="slider-track">
+                            <input type="range" id="range-min" min="0" max="5000" value="500">
+                            <input type="range" id="range-max" min="0" max="5000" value="2000">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="shop-market">
+            <div class="product-title">Все товары</div>
+            <div class="products-grid">
+
+                <div class="card-book">
+                    <img src="{% static 'images/book.jpg' %}">
+                    <div class="card-title">Book 2</div>
+                    <div class="card-price">2500 ₽</div>
+                    <button class="add-to-cart-btn">Добавить в корзину</button>
+                </div>
+
+                <div class="card-book">
+                    <img src="{% static 'images/book.jpg' %}">
+                    <div class="card-title">Book 2</div>
+                    <div class="card-price">2500 ₽</div>
+                    <button class="add-to-cart-btn">Добавить в корзину</button>
+                </div>
+
+                <div class="card-book">
+                    <img src="{% static 'images/book.jpg' %}">
+                    <div class="card-title">Book 2</div>
+                    <div class="card-price">2500 ₽</div>
+                    <button class="add-to-cart-btn">Добавить в корзину</button>
+                </div>
+
+                <div class="card-book">
+                    <img src="{% static 'images/book.jpg' %}">
+                    <div class="card-title">Book 2</div>
+                    <div class="card-price">2500 ₽</div>
+                    <button class="add-to-cart-btn">Добавить в корзину</button>
+                </div>
+
+                <div class="card-book">
+                    <img src="{% static 'images/book.jpg' %}">
+                    <div class="card-title">Book 2</div>
+                    <div class="card-price">2500 ₽</div>
+                    <button class="add-to-cart-btn">Добавить в корзину</button>
+                </div>
+
+                <div class="card-book">
+                    <img src="{% static 'images/book.jpg' %}">
+                    <div class="card-title">Book 2</div>
+                    <div class="card-price">2500 ₽</div>
+                    <button class="add-to-cart-btn">Добавить в корзину</button>
+                </div>
+
+                <div class="card-book">
+                    <img src="{% static 'images/book.jpg' %}">
+                    <div class="card-title">Book 2</div>
+                    <div class="card-price">2500 ₽</div>
+                    <button class="add-to-cart-btn">Добавить в корзину</button>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
 </div>
+<script src="{% static 'js/market-filter.js' %}"></script>
+<script src="{% static 'js/price-slider.js' %}"></script>
 </body>

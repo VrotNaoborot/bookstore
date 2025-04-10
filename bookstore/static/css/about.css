@@ -1,0 +1,42 @@
+.story-subtitle {
+    font-size: 24px;
+    text-align: center;
+}
+
+.story-title {
+    font-size: 42px;
+    text-align: center;
+    margin-top: 4px;
+}
+
+#PLACE {
+    margin-top: 40px;
+}
+
+.about-container {
+    position: relative; /* чтобы позиционировать внутренние элементы */
+    display: inline-block; /* чтобы размер соответствовал содержимому */
+    margin-top: 40px;
+}
+
+.about-container img {
+    display: block;
+    margin: 0 auto;
+}
+
+.info-container {
+    position: absolute;
+    bottom: -60;  /* прижимаем к нижнему краю */
+    left: 240;    /* прижимаем к левому краю */
+    padding: 16px;
+    background-color: rgb(14, 52, 90);
+    z-index: 1; /* выше изображения */
+}
+
+.info-content {
+    background-color: #ffffff;
+    padding: 50px;
+    max-width: 350px;
+    font-weight: normal;
+    line-height: 1.4;
+}

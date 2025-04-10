@@ -1,18 +1,19 @@
+{% load static %}
 <div class="width-container">
     <div class="body-header">
         <div class="main-logo">
             <div class="main-logo-left">
                 BINK.
             </div>
-            <div class="main-logo-right">
+            <a class="main-logo-right" href="{% url 'home' %}">
                 P U B L I S H E R S
-            </div>
+            </a>
         </div>
         <div class="menu-header">
-            <div class="btn-header">Bookstore</div>
-            <div class="btn-header">Events</div>
-            <div class="btn-header">About</div>
-            <div class="btn-header">Contact</div>
+            <a href="{% url 'market' %}" class="btn-header">Bookstore</a>
+            <a href="{% url 'home' %}#meetup" class="btn-header">Events</a>
+            <a href="{% url 'about' %}" class="btn-header">About</a>
+            <a href="{% url 'contact' %}" class="btn-header" >Contact</a>
 
             <div class="login-button">
                 <svg viewBox="0 0 50 50" width="30" height="30" fill="currentColor">
