@@ -25,4 +25,6 @@ urlpatterns = [
     path('market/', market, name='market'),
     path('about/', about, name='about'),
     path('contact/', contact, name='contact'),
+    path('login/', login, name='login'),
+    path('register/', render, name='register'),
 ]

@@ -18,8 +18,31 @@
 </head>
 <body>
 <div class="site-container">
+    <button class="open-modal-btn" onclick="openModal()">Открыть модальное окно</button>
+
+    <div class="modal-overlay" id="modal">
+        <div class="modal">
+            <button class="close-button" onclick="closeModal()">×</button>
+            <div class="modal-image">
+                <img src="{% static 'images/book.jpg' %}">
+            </div>
+            <div class="modal-content">
+                <div class="modal-name">I'm a product</div>
+                <div class="modal-price">3000<span class="rub">₽</span></div>
+                <div class="modal-article">Артикул: 0001</div>
+                <div class="modal-count-title">Количество</div>
+                <div class="quantity-selector">
+                    <button class="qty-btn minus">−</button>
+                    <input type="number" class="qty-input" value="1" min="1" max="99" readonly>
+                    <button class="qty-btn plus">+</button>
+                </div>
+                <button class="add-to-cart">Добавить в корзину</button>
+            </div>
+        </div>
+    </div>
+
     {% include 'header.html' %}
-     <div class="width-container">
+    <div class="width-container">
         <img src="{% static 'images/main_banner.avif' %}" class="main-banner">
         <div class="banner-title">A SOFA, <br>A GOOD<br>BOOK,<br>AND YOU.</div>
     </div>
@@ -198,8 +221,8 @@
             </div>
         </div>
     </div>
-
 </div>
+
 {% include 'footer.html' %}
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="{% static 'js/swiper.js' %}"></script>

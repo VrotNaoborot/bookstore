@@ -531,3 +531,148 @@ footer {
 }
 
 
+/*FRAME BOOK INFO*/
+/* затемнение фона */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  display: flex;
+  background: white;
+  padding: 30px;
+  width: 90%;
+  max-width: 900px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  position: relative;
+  text-align: center;
+}
+
+.modal h2 {
+  margin-top: 0;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20px;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.open-modal-btn {
+  margin: 50px;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.modal-image {
+    flex: 1;
+}
+
+.modal-image img {
+    width: 100%;
+    height: auto;
+}
+
+.modal-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+}
+
+.modal-name {
+    font-size: 24px;
+    color: rgb(14, 52, 90);
+    text-align: left;
+    margin-top: 10px;
+    font-weight: normal;
+}
+
+.modal-price {
+    font-size: 24px;
+    text-align: left;
+    margin-top: 16px;
+    font-weight: normal;
+}
+
+.rub {
+    margin-left: 8px;
+    font-size: 20px;
+}
+
+.modal-article {
+    font-size: 14px;
+    color: #a2aeb3;
+    text-align: left;
+    margin-top: 20px;
+}
+
+.modal-count-title {
+    margin-top: 20px;
+    font-size: 16px;
+    text-align: left;
+    font-weight: normal;
+}
+
+
+.quantity-selector {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  width: fit-content;
+  margin-top: 6px;
+}
+
+.qty-btn {
+  width: 32px;
+  height: 32px;
+  background: #f0f0f0;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.qty-btn:hover {
+  background: #ddd;
+}
+
+.qty-input {
+  width: 40px;
+  height: 32px;
+  text-align: center;
+  border: none;
+  font-size: 16px;
+  background: #fff;
+  pointer-events: none;
+  line-height: 32px; /* Чтобы текст был по вертикали в центре */
+  padding: 0;
+}
+
+
+.add-to-cart {
+    background-color: rgba(16, 52, 92, 1);
+    border: none;
+    color: #ffffff;
+    padding: 14px;
+    cursor: pointer;
+    margin-top: 30px;
+    transition: background-color 0.3s ease-in-out;
+
+}
+
+.add-to-cart:hover {
+    background-color: rgba(16,52,92, 0.4);
+}
