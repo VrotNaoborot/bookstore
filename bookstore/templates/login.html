@@ -21,7 +21,16 @@
 <div class="site-container" style="background-color: rgb(16, 52, 92)">
     <div class="login-container">
         <form class="login-form" action="/login/" method="POST">
+            {% csrf_token %}
             <div class="login-title">Log in</div>
+
+            {% if error %}
+            <div class="messages">
+                <div class="alert alert-{{ error }}">
+                    {{ error }}
+                </div>
+            </div>
+            {% endif %}
 
             <div class="input-box">
                 <input type="email" name="email" placeholder="Email" required class="input">
@@ -39,10 +48,9 @@
 
             <button type="submit" class="submit-btn">Login</button>
             <div style="text-align: center;margin-top: 20px">
-                <a href="" class="redirect-auth">Don't have account?</a>
+                <a href="{% url 'register' %}" class="redirect-auth">Don't have account?</a>
             </div>
         </form>
     </div>
-
 </div>
 </body>

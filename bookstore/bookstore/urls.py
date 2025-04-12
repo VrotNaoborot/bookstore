@@ -18,6 +18,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from core.views import *
+from django.conf.urls.static import static
+from django.contrib.auth import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,5 +28,8 @@ urlpatterns = [
     path('about/', about, name='about'),
     path('contact/', contact, name='contact'),
     path('login/', login, name='login'),
-    path('register/', render, name='register'),
-]
+    path('logout/', logout_user, name='logout'),
+    path('register/', register, name='register'),
+    path('send_verification_code/', send_code_view, name='send_code'),
+    path('register-user/', register_user, name='register_user'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
