@@ -2,13 +2,15 @@ import json
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.core.exceptions import ValidationError
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from datetime import datetime, timedelta
 from django.views.decorators.http import require_POST, require_GET
+from django.contrib.auth.decorators import login_required
 from bookstore import settings
 import random
 import string
 from django.contrib import messages
+from django.shortcuts import get_object_or_404
 from django.contrib.auth import get_user_model
 from django.contrib.auth import authenticate, login as django_login, logout
 from .models import *
@@ -16,17 +18,46 @@ from .models import *
 User = get_user_model()
 
 
-# Create your views here.
+def get_book(request, book_id):
+    try:
+        book = Book.objects.get(pk=book_id)
+        return JsonResponse({
+            'id': book.id,
+            'title': book.title,
+            'price': str(book.price),
+            'article': book.id,
+            'cover_image_url': book.cover_image.url,
+            'max_quantity': book.quantity_in_stock,
+        })
+    except Book.DoesNotExist:
+        return JsonResponse({'error': 'Книга не найдена'}, status=404)
 
 
-def index(requests):
+def index(request):
     bestseller_item = Book.objects.all()
+    fake_books = [bestseller_item[0]] * 10  # временные данные
+
+    cart_item_ids = set()
+    cart_items = set()
+
+    if request.user.is_authenticated:
+        try:
+            cart = Cart.objects.get(user=request.user)
+            print(f"CART: {cart.id}")
+            cart_item_ids = set(cart.items.values_list('product_id', flat=True))
+            cart_items = CartItem.objects.filter(cart=cart)
+            print(f"CART ITEMS: {cart_items}")
+        except Exception as ex:
+            print(ex)
+
     context = {
-        'bestsellers_items': [bestseller_item[0]] * 10,
-        'recommended_items': [bestseller_item[0]] * 10,
+        'bestsellers_items': fake_books,
+        'recommended_items': fake_books,
+        'cart_item_ids': cart_item_ids,
+        'cart_items': cart_items
     }
-    # print(context)
-    return render(requests, template_name="index.html", context=context)
+    print(f"cart items {cart_items}")
+    return render(request, "index.html", context)
 
 
 def market(request):
@@ -208,3 +239,33 @@ def register_user(request):
         messages.error(request, f'Ошибка при создании пользователя: {str(e)}')
         print(f'Ошибка при создании пользователя: {str(e)}')
         return redirect('register')
+
+
+@login_required
+def add_to_cart(request, book_id):
+    if request.method == 'POST':
+        # Получаем книгу по ID
+        book = get_object_or_404(Book, id=book_id)
+
+        # Получаем количество товара из запроса
+        quantity = int(request.POST.get('quantity', 1))
+
+        # Получаем корзину пользователя, или создаем новую
+        cart, created = Cart.objects.get_or_create(user=request.user)
+
+        # Проверяем, есть ли уже этот товар в корзине
+        cart_item, created = CartItem.objects.get_or_create(cart=cart, product=book)
+
+        # Увеличиваем количество товара в корзине
+        cart_item.quantity += quantity
+        cart_item.save()
+
+        # Ответ с текущими данными корзины (например, количество товаров и цена)
+        return JsonResponse({
+            'success': True,
+            'message': f'Товар {book.title} добавлен в корзину!',
+            'cart_item_quantity': cart_item.quantity,
+            'total_items': cart.items.count(),
+        })
+
+    return JsonResponse({'success': False, 'message': 'Некорректный запрос'}, status=400)

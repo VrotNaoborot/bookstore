@@ -872,3 +872,8 @@ footer {
     font-weight: bold;
     color: #002147;
 }
+
+.in-cart {
+    background-color: #f2f2f2;
+    color: rgb(14, 52, 90);
+}

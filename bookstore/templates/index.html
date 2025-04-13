@@ -18,10 +18,10 @@
 </head>
 <body>
 <div class="site-container">
-    <button class="open-modal-btn" onclick="openModal()">Открыть модальное окно</button>
-
+<!--    <button class="open-modal-btn" onclick="openModal()">Открыть модальное окно</button>-->
     <div class="modal-overlay" id="modal">
         <div class="modal">
+            <input type="hidden" id="modal-product-id">
             <button class="close-button" onclick="closeModal()">×</button>
             <div class="modal-image">
                 <img src="{% static 'images/book.jpg' %}">
@@ -53,11 +53,15 @@
                 <div class="swiper-wrapper">
                     {% for best_book in bestsellers_items %}
                     <div class="swiper-slide">
-                        <div class="card-book" id="{{ best_book.id }}">
+                        <div class="card-book" data-id="{{ best_book.id }}">
                             <img src="{{ best_book.cover_image.url }}" alt="1">
                             <div class="card-title">{{ best_book.title }}</div>
                             <div class="card-price">{{ best_book.price }} ₽</div>
+                            {% if best_book.id in cart_item_ids %}
+                            <button class="add-to-cart-btn in-cart" disabled>Товар в корзине</button>
+                            {% else %}
                             <button class="add-to-cart-btn">Добавить в корзину</button>
+                            {% endif %}
                         </div>
                     </div>
                     {% endfor %}
@@ -65,7 +69,6 @@
 
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
-
                 <!--            <div class="swiper-pagination"></div>-->
             </div>
         </div>
@@ -134,4 +137,5 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="{% static 'js/swiper.js' %}"></script>
 <script src="{% static 'js/cart.js' %}"></script>
+<script src="{% static 'js/book-info.js' %}"></script>
 </body>

@@ -32,4 +32,6 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('send_verification_code/', send_code_view, name='send_code'),
     path('register-user/', register_user, name='register_user'),
+    path('get-book/<int:book_id>/', get_book, name='get_book'),
+    path('add-to-cart/<int:book_id>/', add_to_cart, name='add_to_cart'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -53,15 +53,18 @@
 
             </div>
             <div class="cart-content">
+                {% for cart_item in cart_items %}
                 <div class="cart-item">
                     <div class="cart-item-left">
-                        <img src="{% static 'images/book.jpg' %}" alt="Product Image" class="cart-item-image">
+                        <img src="{{ cart_item.product.cover_image.url }}" alt="{{ cart_item.product.title }}"
+                             class="cart-item-image">
                         <div class="cart-item-details">
-                            <div class="cart-item-name">I'm a product</div>
-                            <div class="cart-item-price">22,00 ₽</div>
+                            <input type="hidden" id="cart-product-id" value="{{ cart_item.product.id }}">
+                            <div class="cart-item-name">{{ cart_item.product.title }}</div>
+                            <div class="cart-item-price">{{ cart_item.product.price }} ₽</div>
                             <div class="cart-item-quantity">
                                 <button class="qty-btn">−</button>
-                                <span class="qty-value">1</span>
+                                <span class="qty-value">{{ cart_item.quantity }}</span>
                                 <button class="qty-btn">+</button>
                             </div>
                         </div>
@@ -74,27 +77,7 @@
                         <div class="cart-item-total">22,00 ₽</div>
                     </div>
                 </div>
-                <div class="cart-item">
-                    <div class="cart-item-left">
-                        <img src="{% static 'images/book.jpg' %}" alt="Product Image" class="cart-item-image">
-                        <div class="cart-item-details">
-                            <div class="cart-item-name">I'm a product</div>
-                            <div class="cart-item-price">22,00 ₽</div>
-                            <div class="cart-item-quantity">
-                                <button class="qty-btn">−</button>
-                                <span class="qty-value">1</span>
-                                <button class="qty-btn">+</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="cart-item-right">
-                        <button class="cart-item-remove">
-                            <img src="{% static 'images/trash-icon.png' %}" alt="Удалить"/>
-                        </button>
-                        <div class="cart-item-total">22,00 ₽</div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
 
             <div class="cart-footer">
