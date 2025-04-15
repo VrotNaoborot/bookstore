@@ -54,12 +54,11 @@
             </div>
             <div class="cart-content">
                 {% for cart_item in cart_items %}
-                <div class="cart-item">
+                <div class="cart-item" data-product-id="{{ cart_item.product.id }}">
                     <div class="cart-item-left">
                         <img src="{{ cart_item.product.cover_image.url }}" alt="{{ cart_item.product.title }}"
                              class="cart-item-image">
                         <div class="cart-item-details">
-                            <input type="hidden" id="cart-product-id" value="{{ cart_item.product.id }}">
                             <div class="cart-item-name">{{ cart_item.product.title }}</div>
                             <div class="cart-item-price">{{ cart_item.product.price }} ₽</div>
                             <div class="cart-item-quantity">

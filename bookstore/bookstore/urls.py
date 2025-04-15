@@ -34,4 +34,6 @@ urlpatterns = [
     path('register-user/', register_user, name='register_user'),
     path('get-book/<int:book_id>/', get_book, name='get_book'),
     path('add-to-cart/<int:book_id>/', add_to_cart, name='add_to_cart'),
+    path('cart/update/<int:book_id>/', update_cart_quantity, name='update_cart_quantity'),
+    path('cart/delete/<int:book_id>/', clear_cart_item, name='clear_cart_item')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

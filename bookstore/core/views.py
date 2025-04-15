@@ -244,7 +244,6 @@ def register_user(request):
 @login_required
 def add_to_cart(request, book_id):
     if request.method == 'POST':
-        # Получаем книгу по ID
         book = get_object_or_404(Book, id=book_id)
 
         # Получаем количество товара из запроса
@@ -269,3 +268,51 @@ def add_to_cart(request, book_id):
         })
 
     return JsonResponse({'success': False, 'message': 'Некорректный запрос'}, status=400)
+
+
+@require_POST
+@login_required
+def update_cart_quantity(request, book_id):
+    try:
+        data = json.loads(request.body)
+        new_quantity = int(data.get('quantity'))
+    except (ValueError, json.JSONDecodeError):
+        return JsonResponse({'error': 'Невалидные данные'}, status=400)
+
+    if new_quantity < 1:
+        return JsonResponse({'error': 'Количество должно быть не меньше 1'}, status=400)
+
+    try:
+        book = Book.objects.get(id=book_id)
+        cart = Cart.objects.get(user=request.user)
+        cart_item = CartItem.objects.get(cart=cart, product=book)
+    except (Book.DoesNotExist, Cart.DoesNotExist, CartItem.DoesNotExist):
+        return JsonResponse({'error': 'Элемент корзины не найден'}, status=404)
+
+    cart_item.quantity = new_quantity
+    cart_item.save()
+
+    return JsonResponse({
+        'success': True,
+        'quantity': cart_item.quantity,
+        'total_price': cart_item.quantity * book.price
+    })
+
+
+@require_POST
+@login_required
+def clear_cart_item(request, book_id):
+    try:
+        book = Book.objects.get(id=book_id)
+        cart = Cart.objects.get(user=request.user)
+        cart_item = CartItem.objects.get(cart=cart, product=book)
+        cart_item.delete()
+        return JsonResponse({'success': True})
+    except Book.DoesNotExist:
+        return JsonResponse({'error': 'Товар не найден'}, status=404)
+    except Cart.DoesNotExist:
+        return JsonResponse({'error': 'Корзина не найдена'}, status=404)
+    except CartItem.DoesNotExist:
+        return JsonResponse({'error': 'Товар в корзине не найден'}, status=404)
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)
