@@ -14,6 +14,7 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth import get_user_model
 from django.contrib.auth import authenticate, login as django_login, logout
 from .models import *
+from django.db.models import Min, Max
 
 User = get_user_model()
 
@@ -43,25 +44,79 @@ def index(request):
     if request.user.is_authenticated:
         try:
             cart = Cart.objects.get(user=request.user)
-            print(f"CART: {cart.id}")
+            # print(f"CART: {cart.id}")
             cart_item_ids = set(cart.items.values_list('product_id', flat=True))
             cart_items = CartItem.objects.filter(cart=cart)
-            print(f"CART ITEMS: {cart_items}")
+            # print(f"CART ITEMS: {cart_items}")
         except Exception as ex:
             print(ex)
+
+    total_price_cart = sum([item.quantity * item.product.price for item in cart_items])
 
     context = {
         'bestsellers_items': fake_books,
         'recommended_items': fake_books,
         'cart_item_ids': cart_item_ids,
-        'cart_items': cart_items
+        'cart_items': cart_items,
+        'total_price_cart': total_price_cart
     }
-    print(f"cart items {cart_items}")
+    for cart_item in cart_items:
+        cart_item.total_price = cart_item.quantity * cart_item.product.price
+
     return render(request, "index.html", context)
 
 
 def market(request):
-    return render(request, template_name="market.html")
+    all_collections = Collection.objects.all()
+    selected_collections = request.GET.getlist('collections')
+
+    selected_min_price = request.GET.get('min_price')
+    selected_max_price = request.GET.get('max_price')
+
+    # print(f"MAX PRICE: {selected_max_price} | MIN PRICE: {selected_min_price}")
+
+    books = Book.objects.all()
+    cart_item_ids = set()
+    cart_items = set()
+
+    price_bounds = books.aggregate(
+        min_price=Min('price'),
+        max_price=Max('price')
+    )
+
+    if selected_min_price and selected_max_price:
+        books = books.filter(price__gte=selected_min_price, price__lte=selected_max_price)
+
+    if list(filter(None, selected_collections)):
+        books = books.filter(collections__slug__in=selected_collections)
+
+    if request.user.is_authenticated:
+        try:
+            cart = Cart.objects.get(user=request.user)
+            cart_item_ids = set(cart.items.values_list('product_id', flat=True))
+            cart_items = CartItem.objects.filter(cart=cart)
+        except Exception as ex:
+            print(ex)
+
+    total_price_cart = 0
+
+    for cart_item in cart_items:
+        cart_item.total_price = cart_item.quantity * cart_item.product.price
+        total_price_cart += cart_item.total_price
+
+    context = {
+        'all_collections': all_collections,
+        'selected_collections': selected_collections,
+        'books': books,
+        'min_price': price_bounds['min_price'],
+        'max_price': price_bounds['max_price'],
+        'current_min_price': selected_min_price,
+        'current_max_price': selected_max_price,
+        'cart_item_ids': cart_item_ids,
+        'cart_items': cart_items,
+        'total_price_cart': total_price_cart,
+    }
+    return render(request, template_name="market.html", context=context)
 
 
 def about(request):
@@ -246,20 +301,15 @@ def add_to_cart(request, book_id):
     if request.method == 'POST':
         book = get_object_or_404(Book, id=book_id)
 
-        # Получаем количество товара из запроса
         quantity = int(request.POST.get('quantity', 1))
 
-        # Получаем корзину пользователя, или создаем новую
         cart, created = Cart.objects.get_or_create(user=request.user)
 
-        # Проверяем, есть ли уже этот товар в корзине
         cart_item, created = CartItem.objects.get_or_create(cart=cart, product=book)
 
-        # Увеличиваем количество товара в корзине
         cart_item.quantity += quantity
         cart_item.save()
 
-        # Ответ с текущими данными корзины (например, количество товаров и цена)
         return JsonResponse({
             'success': True,
             'message': f'Товар {book.title} добавлен в корзину!',
@@ -295,6 +345,7 @@ def update_cart_quantity(request, book_id):
     return JsonResponse({
         'success': True,
         'quantity': cart_item.quantity,
+        'price_for_one': cart_item.product.price,
         'total_price': cart_item.quantity * book.price
     })
 

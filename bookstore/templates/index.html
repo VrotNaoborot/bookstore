@@ -3,7 +3,6 @@
     <link rel="stylesheet" href="{% static '/css/main.css' %}">
 
     <script src="https://unpkg.com/imask"></script>
-    <script src="{% static 'js/main.js' %}" defer></script>
     <script src="{% static 'js/modal.js' %}" defer></script>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=TT+Travels&display=swap">
@@ -13,12 +12,11 @@
           rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 <div class="site-container">
-<!--    <button class="open-modal-btn" onclick="openModal()">Открыть модальное окно</button>-->
+    <!--    <button class="open-modal-btn" onclick="openModal()">Открыть модальное окно</button>-->
     <div class="modal-overlay" id="modal">
         <div class="modal">
             <input type="hidden" id="modal-product-id">
@@ -83,11 +81,15 @@
                 <div class="swiper-wrapper">
                     {% for recommended_book in recommended_items %}
                     <div class="swiper-slide">
-                        <div class="card-book" id="{{ recommended_book.id }}">
+                        <div class="card-book" data-id="{{ recommended_book.id }}">
                             <img src="{{ recommended_book.cover_image.url }}">
                             <div class="card-title">{{ recommended_book.title }}</div>
                             <div class="card-price">{{ recommended_book.price }} ₽</div>
+                            {% if recommended_book.id in cart_item_ids %}
+                            <button class="add-to-cart-btn in-cart" disabled>Товар в корзине</button>
+                            {% else %}
                             <button class="add-to-cart-btn">Добавить в корзину</button>
+                            {% endif %}
                         </div>
                     </div>
                     {% endfor %}

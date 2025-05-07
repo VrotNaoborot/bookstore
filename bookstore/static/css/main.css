@@ -207,6 +207,7 @@ body {
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .card-book:hover {
@@ -733,6 +734,13 @@ footer {
   font-size: 16px;
   cursor: pointer;
   margin-bottom: 10px;
+  transition: all 0.3s ease;
+}
+
+.checkout-btn:hover {
+  background-color: #f2f2f2;
+  color: rgb(14, 52, 90);
+  border: 2px solid rgb(14, 52, 90);
 }
 
 .view-cart-btn {

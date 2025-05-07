@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.querySelectorAll('.add-to-cart-btn:not(.in-cart)').forEach(button => {
         button.addEventListener('click', function (e) {
-            console.log('add listener');
+//            console.log('add listener');
             const card = this.closest('.card-book');
             const bookId = card.dataset.id;
             const quantity = parseInt(qtyInput.value);
@@ -74,14 +74,21 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(data => {
                 if (data.success) {
                     modal.style.display = 'none';
-                    document.getElementById('cart-item-count').textContent = data.total_items;
+
+                    document.querySelectorAll(`.card-book[data-id="${bookId}"] .add-to-cart-btn`)
+                        .forEach(button => {
+                            button.classList.add('in-cart');
+                            button.disabled = true;
+                            button.textContent = 'Товар в корзине';
+                        });
+
                 } else {
                     throw new Error('Ошибка при добавлении товара в корзину');
                 }
             })
             .catch(err => {
                 console.error('Ошибка:', err);
-                alert('Не удалось добавить товар в корзину');
+//                alert('Не удалось добавить товар в корзину');
             });
         });
     });

@@ -1,9 +1,22 @@
-from django.db import models
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.core.validators import MinValueValidator
+from django.utils.text import slugify
 
 User = get_user_model()
+
+
+class Collection(models.Model):
+    name = models.CharField(max_length=255, unique=True)
+    slug = models.SlugField(unique=True, blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
 
 
 class Book(models.Model):
@@ -43,6 +56,7 @@ class Book(models.Model):
         auto_now=True,
         verbose_name="Дата последнего обновления"
     )
+    collections = models.ManyToManyField(Collection, related_name='books', blank=True)
 
     class Meta:
         verbose_name = "Книга"
@@ -72,7 +86,7 @@ class Cart(models.Model):
 class CartItem(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='items')
     product = models.ForeignKey(Book, on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField(default=1)
+    quantity = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return f"{self.product.title} — {self.quantity} шт."

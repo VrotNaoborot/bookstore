@@ -38,7 +38,7 @@ document.querySelector('.modal .add-to-cart').addEventListener('click', function
   const productId = document.getElementById('modal-product-id').value;
 
   if (!productId || isNaN(quantity) || quantity <= 0) {
-    alert('Ошибка при добавлении товара');
+//    alert('Ошибка при добавлении товара');
     return;
   }
 

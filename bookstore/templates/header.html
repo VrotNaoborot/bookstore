@@ -73,7 +73,7 @@
                         <button class="cart-item-remove">
                             <img src="{% static 'images/trash-icon.png' %}" alt="Удалить"/>
                         </button>
-                        <div class="cart-item-total">22,00 ₽</div>
+                        <div class="cart-item-total">{{ cart_item.total_price }} ₽</div>
                     </div>
                 </div>
                 {% endfor %}
@@ -82,7 +82,7 @@
             <div class="cart-footer">
                 <div class="cart-summary">
                     <div class="cart-total-label">Сумма</div>
-                    <div class="cart-total-price">22,00 ₽</div>
+                    <div class="cart-total-price" id="cartTotalPrice">{{ total_price_cart }} ₽</div>
                 </div>
                 <div class="cart-note">Налоги и доставка рассчитываются при оформлении заказа.</div>
 
